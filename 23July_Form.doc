@@ -1,0 +1,97 @@
+Till now what we did, creating one html form, and manually declare, and doing all the things. we added the method as 'GET/POSt', then passing a function as onSubmit  = {Function name which needs to be execute}, and manually passing the event, by doing the fooing things.
+  
+export function HtmlForm(){
+
+    function handleForm(event){
+        event.preventDefault()
+        // getting control on current target 
+        const formEl = event.currentTarget
+        // getting the data from the From 
+        const formData = new FormData(formEl)
+        // to get a nice object of key value pair 
+        // to check what are the values we are getting 
+        // from a form 
+        console.log(Object.fromEntries(formData))
+        const id = formData.get("userId")
+        const pass = formData.get("password")
+        formEl.reset()
+    }
+
+    return (
+        <div>
+    <h3>Sign in Form</h3>
+    <form onSubmit={handleForm} method="GET">
+        <label htmlFor="userId">User Name</label>
+        <input id="userId" type="text" name="userId"/>
+        <label htmlFor="password">Password</label>
+        <input id="password" type="password" name="password" />
+        <button>Submit</button>
+    </form>
+    </div>
+    )
+}
+
+But some of the things, which are very obvious like, if I am creating a form, I need the form data, then if it is a React application, I have to prevent default re-loeading of the browser, after getting the form data, I need to clear those input filed. All of these work we are doing manually. Which in explaind in the above code.
+But after React 19 update, we have the option to pass a function as action of the form. Means what need to performed, if the form is submitted.
+
+  export function HtmlForm(){
+
+    function handleForm(formData){
+        const id = formData.get("userId")
+        const pass = formData.get("password")
+        console.log(id, pass)
+        // also we can include the backend steps, like sending emails, that 'You have signed up successfully'
+    }
+
+    return (
+        <div>
+    <h3>Sign in Form</h3>
+    <form action={handleForm}>
+        <label htmlFor="userId">User Name</label>
+        <input id="userId" type="text" name="userId"/>
+        <label htmlFor="password">Password</label>
+        <input id="password" type="password" name="password" />
+        <button>Submit</button>
+    </form>
+    </div>
+    )
+}
+..................................................................................................
+<fieldset>
+        <legend>Gender</legend>
+            <input type="radio" name="gender" value={"male"}/>
+            <label htmlFor="">Male</label>
+            <input type="radio" name="gender" value={"female"}/>
+            <label htmlFor="">Female</label>
+            <input type="radio" name="gender" value={"others"}/>
+            <label htmlFor="">Others</label>
+        </fieldset>
+
+  Here we are using filedset attribute which will marge all the radio input filed in a box.
+  and legend attribute will display a nice UI for all the radio input.
+
+  We should keep in mind, while using Radio input, we have to pass the same name, so that we can only select one option at a time. If not, then multiple radio option will be enabled.
+
+  This thing is kind of similar for checkbox input.
+          <fieldset>
+        <legend>Food Preference</legend>
+            <input type="checkbox" name="veg" value={"veg"}/>
+            <label htmlFor="">VEG</label>
+            <input type="checkbox" name="non-veg" value={"non-veg"}/>
+            <label htmlFor="">Non-Veg</label>
+            <input type="checkbox" name="chainese" value={"chainese"}/>
+            <label htmlFor="">Chainese</label>
+        </fieldset>
+
+  ....................................................................................
+  <label htmlFor="">What is your employment status</label>
+        <select name="employemnt" id="">
+            <option value="none">--------Select--------</option>
+            <option value="12 Pass">12 Pass</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Post-Graduate">Post-Graduate</option>
+            <option value="Phd">Phd</option>
+            <option value="others">Others</option>
+        </select>
+
+
