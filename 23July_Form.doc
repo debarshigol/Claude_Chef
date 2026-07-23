@@ -41,6 +41,8 @@ But after React 19 update, we have the option to pass a function as action of th
         const pass = formData.get("password")
         console.log(id, pass)
         // also we can include the backend steps, like sending emails, that 'You have signed up successfully'
+        // to print all the data getting from the Form
+        Object.fromEntries(formData)
     }
 
     return (
@@ -85,7 +87,7 @@ But after React 19 update, we have the option to pass a function as action of th
 
   ....................................................................................
   <label htmlFor="">What is your employment status</label>
-        <select name="employemnt" id="">
+        <select name="employemnt" id="" name = "educationStatus">
             <option value="none">--------Select--------</option>
             <option value="12 Pass">12 Pass</option>
             <option value="Graduate">Graduate</option>
@@ -93,5 +95,10 @@ But after React 19 update, we have the option to pass a function as action of th
             <option value="Phd">Phd</option>
             <option value="others">Others</option>
         </select>
+
+...........................................................................................
+// to print all the data getting from the Form
+        Object.fromEntries(formData)
+It will help to capture all the form data and create a object of key value pair
 
 
